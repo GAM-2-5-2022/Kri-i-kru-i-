@@ -1,0 +1,55 @@
+#križić i kružić
+
+import sys
+
+go = 0
+game = 1
+count = 0
+
+row = [" "," "," "," "," "," "," "," "," "]
+
+while game == 1:
+    
+    while go != 1:
+
+        move = int(input("Na koju poziciju želite staviti x?"))
+
+        if row[move-1] == " ":
+            row[move-1] = "x"
+            go = 1
+            count = count + 1
+
+        else:
+            print("Ovo polje je već zauzeto!")
+            
+    print(row[0:3])
+    print(row[3:6])
+    print(row[6:])
+
+    go = 0
+
+    if count == 9:
+        print("Kraj igre, izjednačenje!")
+        sys.exit()
+
+    while go != 1:
+
+        move = int(input("Na koju poziciju želite staviti o?"))
+
+        if row[move-1] == " ":
+            row[move-1] = "o"
+            go = 1
+            count = count + 1
+
+        else:
+            print("Ovo polje je već zauzeto!")
+
+    print(row[0:3])
+    print(row[3:6])
+    print(row[6:])
+
+    go = 0
+
+    if count == 9:
+        print("Kraj igre, izjednačenje!")
+        sys.exit()
