@@ -4,8 +4,6 @@ go = 0
 
 red = [" "," "," "," "," "," "," "," "," "]
 
-potez = int(input("Na koju poziciju želite staviti x?"))
-
 while go != 1:
 
     potez = int(input("Na koju poziciju želite staviti x?"))
