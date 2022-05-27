@@ -81,7 +81,8 @@ while game == 1:
 
         else:
             print("Ovo polje je već zauzeto!")
-         if row[0] == "o" and row[1] == "o" and row[2] == "o":
+
+        if row[0] == "o" and row[1] == "o" and row[2] == "o":
             print("o je pobjedio!")
             board()
                     
