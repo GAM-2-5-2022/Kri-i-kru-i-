@@ -9,6 +9,7 @@ pygame.mixer.music.load("D:/2.5/Jan Vlahinić/mixkit-dance-with-me-3.mp3")
 pygame.mixer.music.set_volume(1)
 pygame.mixer.music.play()
 
+turn = "X"
 root = Tk()
 root.geometry("1150x500")
 
@@ -251,7 +252,7 @@ def buttonFunction2():
     buttons = [button1, button2, button3, button4, button5, button6, button7, button8, button9]
 
     # Create turn variable
-    turn = "X"
+
 
     # Button_click function
     def button_click(button_clicked):
