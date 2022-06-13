@@ -1,5 +1,4 @@
 from tkinter import*
-
 from pygame import mixer
 import pygame
 
@@ -11,459 +10,392 @@ pygame.mixer.music.set_volume(1)
 pygame.mixer.music.play()
 
 root = Tk()
-root.geometry ("1150x500")
-
+root.geometry("1150x500")
 
 def buttonFunction1():
-    from tkinter import messagebox
+    import tkinter
 
-    root = Tk()
-    root.title("Codemy.com - Tic-Tac-Toe")
-    root.iconbitmap('C:/Users/Korisnik/Documents/Križić & kružić')
-    #root.geometry ("1200x710")
+    # create the window
+    window = tkinter.Tk()
+    window.title("Tic Tac Toe")
+    window.resizable(0, 0) # Use this secret command to make the window fits all needs, buttons and etc.
 
-    # X starts so true
-    clicked = True
-    count = 0
+    # create 9 buttons and grid them 3x3
+    b1 = tkinter.Button(window, text=" ", font='Times 20 bold', bg='white', height=4, width=8, command=lambda: btn_click(b1)) # create button
+    b1.grid(row=1, column=1) # arrange the buttons in a 3x3 grid
 
-    #disable all the buttons
-    def disable_all_buttons():
-        b1.config(state=DISABLED)
-        b2.config(state=DISABLED)
-        b3.config(state=DISABLED)
-        b4.config(state=DISABLED)
-        b5.config(state=DISABLED)
-        b6.config(state=DISABLED)
-        b7.config(state=DISABLED)
-        b8.config(state=DISABLED)
-        b9.config(state=DISABLED)
+    b2 = tkinter.Button(window, text=" ", font='Times 20 bold', bg='white', height=4, width=8, command=lambda: btn_click(b2))
+    b2.grid(row=1, column=2)
 
-    #Check to see if someone won
-    def checkifwon():
-        global winner
-        winner = False
+    b3 = tkinter.Button(window, text=" ", font='Times 20 bold', bg='white', height=4, width=8, command=lambda: btn_click(b3))
+    b3.grid(row=1, column=3)
 
-        if b1["text"] == "X" and b2["text"] == "X" and b3["text"] == "X":
-            b1.config(bg="red")
-            b2.config(bg="red")
-            b3.config(bg="red")
-            winner = True
-            messagebox.showinfo("Tic Tac Toe", "X Wins!")
-            disable_all_buttons()
-            
-        elif b4["text"] == "X" and b5["text"] == "X" and b6["text"] == "X":
-            b4.config(bg="red")
-            b5.config(bg="red")
-            b6.config(bg="red")
-            winner = True
-            messagebox.showinfo("Tic Tac Toe", "X Wins!")
-            disable_all_buttons()
-            
-        elif b7["text"] == "X" and b8["text"] == "X" and b9["text"] == "X":
-            b7.config(bg="red")
-            b8.config(bg="red")
-            b9.config(bg="red")
-            winner = True
-            messagebox.showinfo("Tic Tac Toe", "X Wins!")
-            disable_all_buttons()
+    b4 = tkinter.Button(window, text=" ", font='Times 20 bold', bg='white', height=4, width=8, command=lambda: btn_click(b4))
+    b4.grid(row=2, column=1)
 
-        elif b1["text"] == "X" and b4["text"] == "X" and b7["text"] == "X":
-            b1.config(bg="red")
-            b4.config(bg="red")
-            b7.config(bg="red")
-            winner = True
-            messagebox.showinfo("Tic Tac Toe", "X Wins!")
-            disable_all_buttons()
+    b5 = tkinter.Button(window, text=" ", font='Times 20 bold', bg='white', height=4, width=8, command=lambda: btn_click(b5))
+    b5.grid(row=2, column=2)
 
-        elif b2["text"] == "X" and b5["text"] == "X" and b8["text"] == "X":
-            b2.config(bg="red")
-            b5.config(bg="red")
-            b8.config(bg="red")
-            winner = True
-            messagebox.showinfo("Tic Tac Toe", "X Wins!")
-            disable_all_buttons()
-            
-        elif b3["text"] == "X" and b6["text"] == "X" and b9["text"] == "X":
-            b3.config(bg="red")
-            b6.config(bg="red")
-            b9.config(bg="red")
-            winner = True
-            messagebox.showinfo("Tic Tac Toe", "X Wins!")
-            disable_all_buttons()
+    b6 = tkinter.Button(window, text=" ", font='Times 20 bold', bg='white', height=4, width=8, command=lambda: btn_click(b6))
+    b6.grid(row=2, column=3)
 
-        elif b1["text"] == "X" and b5["text"] == "X" and b9["text"] == "X":
-            b1.config(bg="red")
-            b5.config(bg="red")
-            b9.config(bg="red")
-            winner = True
-            messagebox.showinfo("Tic Tac Toe", "X Wins!")
-            disable_all_buttons()
+    b7 = tkinter.Button(window, text=" ", font='Times 20 bold', bg='white', height=4, width=8, command=lambda: btn_click(b7))
+    b7.grid(row=3, column=1)
 
-        elif b3["text"] == "X" and b5["text"] == "X" and b7["text"] == "X":
-            b3.config(bg="red")
-            b5.config(bg="red")
-            b7.config(bg="red")
-            winner = True
-            messagebox.showinfo("Tic Tac Toe", "X Wins!")
-            disable_all_buttons()
+    b8 = tkinter.Button(window, text=" ", font='Times 20 bold', bg='white', height=4, width=8, command=lambda: btn_click(b8))
+    b8.grid(row=3, column=2)
 
-        #check for O's win
-        elif b1["text"] == "O" and b2["text"] == "O" and b3["text"] == "O":
-            b1.config(bg="red")
-            b2.config(bg="red")
-            b3.config(bg="red")
-            winner = True
-            messagebox.showinfo("Tic Tac Toe", "O Wins!")
-            disable_all_buttons()
-            
-        elif b4["text"] == "O" and b5["text"] == "O" and b6["text"] == "O":
-            b4.config(bg="red")
-            b5.config(bg="red")
-            b6.config(bg="red")
-            winner = True
-            messagebox.showinfo("Tic Tac Toe", "O Wins!")
-            disable_all_buttons()
-            
-        elif b7["text"] == "O" and b8["text"] == "O" and b9["text"] == "O":
-            b7.config(bg="red")
-            b8.config(bg="red")
-            b9.config(bg="red")
-            winner = True
-            messagebox.showinfo("Tic Tac Toe", "O Wins!")
-            disable_all_buttons()
+    b9 = tkinter.Button(window, text=" ", font='Times 20 bold', bg='white', height=4, width=8, command=lambda: btn_click(b9))
+    b9.grid(row=3, column=3)
 
-        elif b1["text"] == "O" and b4["text"] == "O" and b7["text"] == "O":
-            b1.config(bg="red")
-            b4.config(bg="red")
-            b7.config(bg="red")
-            winner = True
-            messagebox.showinfo("Tic Tac Toe", "O Wins!")
-            disable_all_buttons()
+    # store buttons in a list
+    buttons = [b1, b2, b3, b4, b5, b6, b7, b8, b9]
 
-        elif b2["text"] == "O" and b5["text"] == "O" and b8["text"] == "O":
-            b2.config(bg="red")
-            b5.config(bg="red")
-            b8.config(bg="red")
-            winner = True
-            messagebox.showinfo("Tic Tac Toe", "O Wins!")
-            disable_all_buttons()
-            
-        elif b3["text"] == "O" and b6["text"] == "O" and b9["text"] == "O":
-            b3.config(bg="red")
-            b6.config(bg="red")
-            b9.config(bg="red")
-            winner = True
-            messagebox.showinfo("Tic Tac Toe", "O Wins!")
-            disable_all_buttons()
+    # create btn_click function
+    def btn_click(btn_clicked):
+        btn_clicked['text'] = "X" # change the text of the button
+        btn_clicked['state'] = 'disabled' # disable the button
+        btn_clicked['bg'] = 'red' # change the background color of the button
 
-        elif b1["text"] == "O" and b5["text"] == "O" and b9["text"] == "O":
-            b1.config(bg="red")
-            b5.config(bg="red")
-            b9.config(bg="red")
-            winner = True
-            messagebox.showinfo("Tic Tac Toe", "O Wins!")
-            disable_all_buttons()
+        def checkforwinner():
+            # if first row is X
+            if b1['text'] == 'X' and b2['text'] == 'X' and b3['text'] == 'X':
+                # make all buttons disabled
+                for btn in buttons:
+                    btn['state'] = 'disabled'
+                tkinter.Message(window, text='X wins!', width=100, bg='green', font='Times 20 bold').grid(row=4, column=1)
 
-        elif b3["text"] == "O" and b5["text"] == "O" and b7["text"] == "O":
-            b3.config(bg="red")
-            b5.config(bg="red")
-            b7.config(bg="red")
-            winner = True
-            messagebox.showinfo("Tic Tac Toe", "O Wins!")
-            disable_all_buttons()
+            # if second row is X
+            elif b4['text'] == 'X' and b5['text'] == 'X' and b6['text'] == 'X':
+                # make all buttons disabled
+                for btn in buttons:
+                    btn['state'] = 'disabled'
+                tkinter.Message(window, text='X wins!', width=100, bg='green', font='Times 20 bold').grid(row=4, column=1)
 
-        # Check if tie
-        if count == 9 and winer == False:
-            messagebox.showinfo("Tic Tac Toe", "It's A Tie!\n No One Wins!")
-            disable_all_buttons()
-        
-    # Button clicked function
-    def b_click(b):
-        global clicked, count
-        if b["text"] == " " and clicked == True:
-            b["text"] = "X"
-            clicked = False
-            count += 1
-            checkifwon()
-        elif b["text"] == " " and clicked == False:
-             b["text"] = "O"
-             clicked = True
-             count += 1
-             checkifwon()
-        else:
-            messagebox.showerror("Tic tac Toe, Thaat box has alredy been selected\nPick Anather Box...")
+            # if third row is X
+            elif b7['text'] == 'X' and b8['text'] == 'X' and b9['text'] == 'X':
+                # make all buttons disabled
+                for btn in buttons:
+                    btn['state'] = 'disabled'
+                tkinter.Message(window, text='X wins!', width=100, bg='green', font='Times 20 bold').grid(row=4, column=1)
 
-    #Start the game over!
-    def reset():
-        global b1, b2, b3, b4, b5, b6, b7, b8, b9
-        global clicked, count
-        clicked = True
-        count = 0
+            # if first column is X
+            elif b1['text'] == 'X' and b4['text'] == 'X' and b7['text'] == 'X':
+                # make all buttons disabled
+                for btn in buttons:
+                    btn['state'] = 'disabled'
+                tkinter.Message(window, text='X wins!', width=100, bg='green', font='Times 20 bold').grid(row=4, column=1)
 
-        #Build our buttons
-        b1 = Button(root, text=" ", font=("Helvetica", 20), height=3, width=6, bg="SystemButtonFace", command=lambda: b_click(b1))
-        b2 = Button(root, text=" ", font=("Helvetica", 20), height=3, width=6, bg="SystemButtonFace", command=lambda: b_click(b2))
-        b3 = Button(root, text=" ", font=("Helvetica", 20), height=3, width=6, bg="SystemButtonFace", command=lambda: b_click(b3))
+            # if second column is X
+            elif b2['text'] == 'X' and b5['text'] == 'X' and b8['text'] == 'X':
+                # make all buttons disabled
+                for btn in buttons:
+                    btn['state'] = 'disabled'
+                tkinter.Message(window, text='X wins!', width=100, bg='green', font='Times 20 bold').grid(row=4, column=1)
 
-        b4 = Button(root, text=" ", font=("Helvetica", 20), height=3, width=6, bg="SystemButtonFace", command=lambda: b_click(b4))
-        b5 = Button(root, text=" ", font=("Helvetica", 20), height=3, width=6, bg="SystemButtonFace", command=lambda: b_click(b5))
-        b6 = Button(root, text=" ", font=("Helvetica", 20), height=3, width=6, bg="SystemButtonFace", command=lambda: b_click(b6))
+            # if third column is X
+            elif b3['text'] == 'X' and b6['text'] == 'X' and b9['text'] == 'X':
+                # make all buttons disabled
+                for btn in buttons:
+                    btn['state'] = 'disabled'
+                tkinter.Message(window, text='X wins!', width=100, bg='green', font='Times 20 bold').grid(row=4, column=1)
 
-        b7 = Button(root, text=" ", font=("Helvetica", 20), height=3, width=6, bg="SystemButtonFace", command=lambda: b_click(b7))
-        b8 = Button(root, text=" ", font=("Helvetica", 20), height=3, width=6, bg="SystemButtonFace", command=lambda: b_click(b8))
-        b9 = Button(root, text=" ", font=("Helvetica", 20), height=3, width=6, bg="SystemButtonFace", command=lambda: b_click(b9))
+            # if first diagonal is X
+            elif b1['text'] == 'X' and b5['text'] == 'X' and b9['text'] == 'X':
+                # make all buttons disabled
+                for btn in buttons:
+                    btn['state'] = 'disabled'
+                tkinter.Message(window, text='X wins!', width=100, bg='green', font='Times 20 bold').grid(row=4, column=1)
 
-        # Grid our buttons to the screen
-        b1.grid(row=0, column=0)
-        b2.grid(row=0, column=1)
-        b3.grid(row=0, column=2)
+            # if second diagonal is X
+            elif b3['text'] == 'X' and b5['text'] == 'X' and b7['text'] == 'X':
+                # make all buttons disabled
+                for btn in buttons:
+                    btn['state'] = 'disabled'
+                tkinter.Message(window, text='X wins!', width=100, bg='green', font='Times 20 bold').grid(row=4, column=1)
 
-        b4.grid(row=1, column=0)
-        b5.grid(row=1, column=1)
-        b6.grid(row=1, column=2)
+            else:
+                emptybuttons = []
+                if b1['text'] == " ":
+                    emptybuttons.append(b1)
+                if b2['text'] == " ":
+                    emptybuttons.append(b2)
+                if b3['text'] == " ":
+                    emptybuttons.append(b3)
+                if ['text'] == " ":
+                    emptybuttons.append(b4)
+                if b5 == " ":
+                    emptybuttons.append(b5)
+                if b6['text'] == " ":
+                    emptybuttons.append(b6)
+                if b7['text'] == " ":
+                    emptybuttons.append(b7)
+                if b8['text'] == " ":
+                    emptybuttons.append(b8)
+                if b9['text'] == " ":
+                    emptybuttons.append(b9)
 
-        b7.grid(row=2, column=0)
-        b8.grid(row=2, column=1)
-        b9.grid(row=2, column=2)
+                # randomly select a button from the list
+                import random
+                random_button = random.choice(emptybuttons)
 
-    # Create menue
-    my_menu = Menu(root)
-    root.config(menu = my_menu)
+                # change button text to O
+                random_button.config(text="O")
 
-    #Create options menu
-    options_menu =Menu (my_menu, tearoff=False)
-    my_menu.add_cascade(label="Option", menu=options_menu)
-    options_menu.add_command(label="Rest Game", command=reset)
+                # make button disabled
+                random_button.config(state=tkinter.DISABLED)
 
-    reset()
+                # make O blue
+                random_button.config(bg="blue")
 
-    root.mainloop()
+                # clear the list
+                emptybuttons.clear()
+
+                # if first row is O
+                if b1['text'] == 'O' and b2['text'] == 'O' and b3['text'] == 'O':
+                    # make all buttons disabled
+                    for btn in buttons:
+                        btn['state'] = 'disabled'
+                    tkinter.Message(window, text='O wins!', width=100, bg='green', font='Times 20 bold').grid(row=4, column=1)
+
+                # if second row is O
+                elif b4['text'] == 'O' and b5['text'] == 'O' and b6['text'] == 'O':
+                    # make all buttons disabled
+                    for btn in buttons:
+                        btn['state'] = 'disabled'
+                    tkinter.Message(window, text='O wins!', width=100, bg='green', font='Times 20 bold').grid(row=4, column=1)
+
+                # if third row is O
+                elif b7['text'] == 'O' and b8['text'] == 'O' and b9['text'] == 'O':
+                    # make all buttons disabled
+                    for btn in buttons:
+                        btn['state'] = 'disabled'
+                    tkinter.Message(window, text='O wins!', width=100, bg='green', font='Times 20 bold').grid(row=4, column=1)
+
+                # if first column is O
+                elif b1['text'] == 'O' and b4['text'] == 'O' and b7['text'] == 'O':
+                    # make all buttons disabled
+                    for btn in buttons:
+                        btn['state'] = 'disabled'
+                    tkinter.Message(window, text='O wins!', width=100, bg='green', font='Times 20 bold').grid(row=4, column=1)
+
+                # if second column is O
+                elif b2['text'] == 'O' and b5['text'] == 'O' and b8['text'] == 'O':
+                    # make all buttons disabled
+                    for btn in buttons:
+                        btn['state'] = 'disabled'
+                    tkinter.Message(window, text='O wins!', width=100, bg='green', font='Times 20 bold').grid(row=4, column=1)
+
+                # if third column is O
+                elif b3['text'] == 'O' and b6['text'] == 'O' and b9['text'] == 'O':
+                    # make all buttons disabled
+                    for btn in buttons:
+                        btn['state'] = 'disabled'
+                    tkinter.Message(window, text='O wins!', width=100, bg='green', font='Times 20 bold').grid(row=4, column=1)
+
+                # if first diagonal is O
+                elif b1['text'] == 'O' and b5['text'] == 'O' and b9['text'] == 'O':
+                    # make all buttons disabled
+                    for btn in buttons:
+                        btn['state'] = 'disabled'
+                    tkinter.Message(window, text='O wins!', width=100, bg='green', font='Times 20 bold').grid(row=4, column=1)
+
+                # if second diagonal is O
+                elif b3['text'] == 'O' and b5['text'] == 'O' and b7['text'] == 'O':
+                    # make all buttons disabled
+                    for btn in buttons:
+                        btn['state'] = 'disabled'
+                    tkinter.Message(window, text='O wins!', width=100, bg='green', font='Times 20 bold').grid(row=4, column=1)
+        checkforwinner()
+
+    if __name__ == "__main__":
+        window.mainloop()
 
 def buttonFunction2():
-    from tkinter import messagebox
+    import tkinter
 
-    root = Tk()
-    root.title("Codemy.com - Tic-Tac-Toe")
-    root.iconbitmap('C:/Users/Korisnik/Documents/Križić & kružić')
-    #root.geometry ("1200x710")
+    # Create the window
+    window = Tk()
+    window.title("Tic Tac Toe - PC")
+    window.resizable(0, 0) # Use this secret command to make the window fits all needs, buttons and etc.
 
-    # X starts so true
-    clicked = True
-    count = 0
+    # Create the 9 buttons
+    button1 = Button(window, text=" ", font='Times 20 bold', bg='white', height=4, width=8, command=lambda: button_click(button1))
+    button1.grid(row=1, column=1)
 
-    #disable all the buttons
-    def disable_all_buttons():
-        b1.config(state=DISABLED)
-        b2.config(state=DISABLED)
-        b3.config(state=DISABLED)
-        b4.config(state=DISABLED)
-        b5.config(state=DISABLED)
-        b6.config(state=DISABLED)
-        b7.config(state=DISABLED)
-        b8.config(state=DISABLED)
-        b9.config(state=DISABLED)
+    button2 = Button(window, text=" ", font='Times 20 bold', bg='white', height=4, width=8, command=lambda: button_click(button2))
+    button2.grid(row=1, column=2)
 
-    #Check to see if someone won
-    def checkifwon():
-        global winner
-        winner = False
+    button3 = Button(window, text=" ", font='Times 20 bold', bg='white', height=4, width=8, command=lambda: button_click(button3))
+    button3.grid(row=1, column=3)
 
-        if b1["text"] == "X" and b2["text"] == "X" and b3["text"] == "X":
-            b1.config(bg="red")
-            b2.config(bg="red")
-            b3.config(bg="red")
-            winner = True
-            messagebox.showinfo("Tic Tac Toe", "X Wins!")
-            disable_all_buttons()
-            
-        elif b4["text"] == "X" and b5["text"] == "X" and b6["text"] == "X":
-            b4.config(bg="red")
-            b5.config(bg="red")
-            b6.config(bg="red")
-            winner = True
-            messagebox.showinfo("Tic Tac Toe", "X Wins!")
-            disable_all_buttons()
-            
-        elif b7["text"] == "X" and b8["text"] == "X" and b9["text"] == "X":
-            b7.config(bg="red")
-            b8.config(bg="red")
-            b9.config(bg="red")
-            winner = True
-            messagebox.showinfo("Tic Tac Toe", "X Wins!")
-            disable_all_buttons()
+    button4 = Button(window, text=" ", font='Times 20 bold', bg='white',  height=4, width=8, command=lambda: button_click(button4))
+    button4.grid(row=2, column=1)
 
-        elif b1["text"] == "X" and b4["text"] == "X" and b7["text"] == "X":
-            b1.config(bg="red")
-            b4.config(bg="red")
-            b7.config(bg="red")
-            winner = True
-            messagebox.showinfo("Tic Tac Toe", "X Wins!")
-            disable_all_buttons()
+    button5 = Button(window, text=" ", font='Times 20 bold', bg='white',  height=4, width=8, command=lambda: button_click(button5))
+    button5.grid(row=2, column=2)
 
-        elif b2["text"] == "X" and b5["text"] == "X" and b8["text"] == "X":
-            b2.config(bg="red")
-            b5.config(bg="red")
-            b8.config(bg="red")
-            winner = True
-            messagebox.showinfo("Tic Tac Toe", "X Wins!")
-            disable_all_buttons()
-            
-        elif b3["text"] == "X" and b6["text"] == "X" and b9["text"] == "X":
-            b3.config(bg="red")
-            b6.config(bg="red")
-            b9.config(bg="red")
-            winner = True
-            messagebox.showinfo("Tic Tac Toe", "X Wins!")
-            disable_all_buttons()
+    button6 = Button(window, text=" ", font='Times 20 bold', bg='white',  height=4, width=8, command=lambda: button_click(button6))
+    button6.grid(row=2, column=3)
 
-        elif b1["text"] == "X" and b5["text"] == "X" and b9["text"] == "X":
-            b1.config(bg="red")
-            b5.config(bg="red")
-            b9.config(bg="red")
-            winner = True
-            messagebox.showinfo("Tic Tac Toe", "X Wins!")
-            disable_all_buttons()
+    button7 = Button(window, text=" ", font='Times 20 bold', bg='white',  height=4, width=8, command=lambda: button_click(button7))
+    button7.grid(row=3, column=1)
 
-        elif b3["text"] == "X" and b5["text"] == "X" and b7["text"] == "X":
-            b3.config(bg="red")
-            b5.config(bg="red")
-            b7.config(bg="red")
-            winner = True
-            messagebox.showinfo("Tic Tac Toe", "X Wins!")
-            disable_all_buttons()
+    button8 = Button(window, text=" ", font='Times 20 bold', bg='white',  height=4, width=8, command=lambda: button_click(button8))
+    button8.grid(row=3, column=2)
 
-        #check for O's win
-        elif b1["text"] == "O" and b2["text"] == "O" and b3["text"] == "O":
-            b1.config(bg="red")
-            b2.config(bg="red")
-            b3.config(bg="red")
-            winner = True
-            messagebox.showinfo("Tic Tac Toe", "O Wins!")
-            disable_all_buttons()
-            
-        elif b4["text"] == "O" and b5["text"] == "O" and b6["text"] == "O":
-            b4.config(bg="red")
-            b5.config(bg="red")
-            b6.config(bg="red")
-            winner = True
-            messagebox.showinfo("Tic Tac Toe", "O Wins!")
-            disable_all_buttons()
-            
-        elif b7["text"] == "O" and b8["text"] == "O" and b9["text"] == "O":
-            b7.config(bg="red")
-            b8.config(bg="red")
-            b9.config(bg="red")
-            winner = True
-            messagebox.showinfo("Tic Tac Toe", "O Wins!")
-            disable_all_buttons()
+    button9 = Button(window, text=" ", font='Times 20 bold', bg='white', height=4, width=8, command=lambda: button_click(button9))
+    button9.grid(row=3, column=3)
 
-        elif b1["text"] == "O" and b4["text"] == "O" and b7["text"] == "O":
-            b1.config(bg="red")
-            b4.config(bg="red")
-            b7.config(bg="red")
-            winner = True
-            messagebox.showinfo("Tic Tac Toe", "O Wins!")
-            disable_all_buttons()
+    # Store buttons in a list
+    buttons = [button1, button2, button3, button4, button5, button6, button7, button8, button9]
 
-        elif b2["text"] == "O" and b5["text"] == "O" and b8["text"] == "O":
-            b2.config(bg="red")
-            b5.config(bg="red")
-            b8.config(bg="red")
-            winner = True
-            messagebox.showinfo("Tic Tac Toe", "O Wins!")
-            disable_all_buttons()
-            
-        elif b3["text"] == "O" and b6["text"] == "O" and b9["text"] == "O":
-            b3.config(bg="red")
-            b6.config(bg="red")
-            b9.config(bg="red")
-            winner = True
-            messagebox.showinfo("Tic Tac Toe", "O Wins!")
-            disable_all_buttons()
+    # Create turn variable
+    turn = "X"
 
-        elif b1["text"] == "O" and b5["text"] == "O" and b9["text"] == "O":
-            b1.config(bg="red")
-            b5.config(bg="red")
-            b9.config(bg="red")
-            winner = True
-            messagebox.showinfo("Tic Tac Toe", "O Wins!")
-            disable_all_buttons()
+    # Button_click function
+    def button_click(button_clicked):
+        global turn
+        # We won't need to check if button is empty, because we will make
+        # it disabled when we click on it. So it cannot be clicked again.
+        if turn == "X":
+            # Button text is X and disabled
+            button_clicked.config(text="X", state=DISABLED)
+            # Button background color
+            button_clicked.config(bg="red")
+            turn = "O"
 
-        elif b3["text"] == "O" and b5["text"] == "O" and b7["text"] == "O":
-            b3.config(bg="red")
-            b5.config(bg="red")
-            b7.config(bg="red")
-            winner = True
-            messagebox.showinfo("Tic Tac Toe", "O Wins!")
-            disable_all_buttons()
+        elif turn == "O":
+            # We will use elif here not if, or then, it won't work properly
+            # Button text is O and disabled
+            button_clicked.config(text="O", state=DISABLED)
+            # Button background color
+            button_clicked.config(bg="blue")
+            turn = "X"
 
-        # Check if tie
-        if count == 9 and winer == False:
-            messagebox.showinfo("Tic Tac Toe", "It's A Tie!\n No One Wins!")
-            disable_all_buttons()
-        
-    # Button clicked function
-    def b_click(b):
-        global clicked, count
-        if b["text"] == " " and clicked == True:
-            b["text"] = "X"
-            clicked = False
-            count += 1
-            checkifwon()
-        elif b["text"] == " " and clicked == False:
-             b["text"] = "O"
-             clicked = True
-             count += 1
-             checkifwon()
-        else:
-            messagebox.showerror("Tic tac Toe, Thaat box has alredy been selected\nPick Anather Box...")
+        # if first row is X
+        if button1["text"] == "X" and button2["text"] == "X" and button3["text"] == "X":
+            # Disable all buttons
+            for button in buttons:
+                button.config(state=DISABLED)
+            tkinter.Message(window, text="X wins!", font='Times 20 bold').grid(row=4, column=1, columnspan=3)
 
-    #Start the game over!
-    def reset():
-        global b1, b2, b3, b4, b5, b6, b7, b8, b9
-        global clicked, count
-        clicked = True
-        count = 0
+        # if first row is O
+        elif button1["text"] == "O" and button2["text"] == "O" and button3["text"] == "O":
+            # Disable all buttons
+            for button in buttons:
+                button.config(state=DISABLED)
+            tkinter.Message(window, text="O wins!", font='Times 20 bold').grid(row=4, column=1, columnspan=3)
 
-        #Build our buttons
-        b1 = Button(root, text=" ", font=("Helvetica", 20), height=3, width=6, bg="SystemButtonFace", command=lambda: b_click(b1))
-        b2 = Button(root, text=" ", font=("Helvetica", 20), height=3, width=6, bg="SystemButtonFace", command=lambda: b_click(b2))
-        b3 = Button(root, text=" ", font=("Helvetica", 20), height=3, width=6, bg="SystemButtonFace", command=lambda: b_click(b3))
+        # if second row is X
+        elif button4["text"] == "X" and button5["text"] == "X" and button6["text"] == "X":
+            # Disable all buttons
+            for button in buttons:
+                button.config(state=DISABLED)
+            tkinter.Message(window, text="X wins!", font='Times 20 bold').grid(row=4, column=1, columnspan=3)
 
-        b4 = Button(root, text=" ", font=("Helvetica", 20), height=3, width=6, bg="SystemButtonFace", command=lambda: b_click(b4))
-        b5 = Button(root, text=" ", font=("Helvetica", 20), height=3, width=6, bg="SystemButtonFace", command=lambda: b_click(b5))
-        b6 = Button(root, text=" ", font=("Helvetica", 20), height=3, width=6, bg="SystemButtonFace", command=lambda: b_click(b6))
+        # if second row is O
+        elif button4["text"] == "O" and button5["text"] == "O" and button6["text"] == "O":
+            # Disable all buttons
+            for button in buttons:
+                button.config(state=DISABLED)
+            tkinter.Message(window, text="O wins!", font='Times 20 bold').grid(row=4, column=1, columnspan=3)
 
-        b7 = Button(root, text=" ", font=("Helvetica", 20), height=3, width=6, bg="SystemButtonFace", command=lambda: b_click(b7))
-        b8 = Button(root, text=" ", font=("Helvetica", 20), height=3, width=6, bg="SystemButtonFace", command=lambda: b_click(b8))
-        b9 = Button(root, text=" ", font=("Helvetica", 20), height=3, width=6, bg="SystemButtonFace", command=lambda: b_click(b9))
+        # if third row is X
+        elif button7["text"] == "X" and button8["text"] == "X" and button9["text"] == "X":
+            # Disable all buttons
+            for button in buttons:
+                button.config(state=DISABLED)
+            tkinter.Message(window, text="X wins!", font='Times 20 bold').grid(row=4, column=1, columnspan=3)
 
-        # Grid our buttons to the screen
-        b1.grid(row=0, column=0)
-        b2.grid(row=0, column=1)
-        b3.grid(row=0, column=2)
+        # if third row is O
+        elif button7["text"] == "O" and button8["text"] == "O" and button9["text"] == "O":
+            # Disable all buttons
+            for button in buttons:
+                button.config(state=DISABLED)
+            tkinter.Message(window, text="O wins!", font='Times 20 bold').grid(row=4, column=1, columnspan=3)
 
-        b4.grid(row=1, column=0)
-        b5.grid(row=1, column=1)
-        b6.grid(row=1, column=2)
+        # if first column is X
+        elif button1["text"] == "X" and button4["text"] == "X" and button7["text"] == "X":
+            # Disable all buttons
+            for button in buttons:
+                button.config(state=DISABLED)
+            tkinter.Message(window, text="X wins!", font='Times 20 bold').grid(row=4, column=1, columnspan=3)
 
-        b7.grid(row=2, column=0)
-        b8.grid(row=2, column=1)
-        b9.grid(row=2, column=2)
+        # if first column is O
+        elif button1["text"] == "O" and button4["text"] == "O" and button7["text"] == "O":
+            # Disable all buttons
+            for button in buttons:
+                button.config(state=DISABLED)
+            tkinter.Message(window, text="O wins!", font='Times 20 bold').grid(row=4, column=1, columnspan=3)
 
-    # Create menue
-    my_menu = Menu(root)
-    root.config(menu = my_menu)
+        # if second column is X
+        elif button2["text"] == "X" and button5["text"] == "X" and button8["text"] == "X":
+            # Disable all buttons
+            for button in buttons:
+                button.config(state=DISABLED)
+            tkinter.Message(window, text="X wins!", font='Times 20 bold').grid(row=4, column=1, columnspan=3)
 
-    #Create options menu
-    options_menu =Menu (my_menu, tearoff=False)
-    my_menu.add_cascade(label="Option", menu=options_menu)
-    options_menu.add_command(label="Rest Game", command=reset)
+        # if second column is O
+        elif button2["text"] == "O" and button5["text"] == "O" and button8["text"] == "O":
+            # Disable all buttons
+            for button in buttons:
+                button.config(state=DISABLED)
+            tkinter.Message(window, text="O wins!", font='Times 20 bold').grid(row=4, column=1, columnspan=3)
 
-    reset()
+        # if third column is X
+        elif button3["text"] == "X" and button6["text"] == "X" and button9["text"] == "X":
+            # Disable all buttons
+            for button in buttons:
+                button.config(state=DISABLED)
+            tkinter.Message(window, text="X wins!", font='Times 20 bold').grid(row=4, column=1, columnspan=3)
 
-    root.mainloop()
+        # if third column is O
+        elif button3["text"] == "O" and button6["text"] == "O" and button9["text"] == "O":
+            # Disable all buttons
+            for button in buttons:
+                button.config(state=DISABLED)
+            tkinter.Message(window, text="O wins!", font='Times 20 bold').grid(row=4, column=1, columnspan=3)
 
+        # if first diagonal is X
+        elif button1["text"] == "X" and button5["text"] == "X" and button9["text"] == "X":
+            # Disable all buttons
+            for button in buttons:
+                button.config(state=DISABLED)
+            tkinter.Message(window, text="X wins!", font='Times 20 bold').grid(row=4, column=1, columnspan=3)
+
+        # if first diagonal is O
+        elif button1["text"] == "O" and button5["text"] == "O" and button9["text"] == "O":
+            # Disable all buttons
+            for button in buttons:
+                button.config(state=DISABLED)
+            tkinter.Message(window, text="O wins!", font='Times 20 bold').grid(row=4, column=1, columnspan=3)
+
+        # if second diagonal is X
+        elif button3["text"] == "X" and button5["text"] == "X" and button7["text"] == "X":
+            # Disable all buttons
+            for button in buttons:
+                button.config(state=DISABLED)
+            tkinter.Message(window, text="X wins!", font='Times 20 bold').grid(row=4, column=1, columnspan=3)
+
+        # if second diagonal is O
+        elif button3["text"] == "O" and button5["text"] == "O" and button7["text"] == "O":
+            # Disable all buttons
+            for button in buttons:
+                button.config(state=DISABLED)
+            tkinter.Message(window, text="O wins!", font='Times 20 bold').grid(row=4, column=1, columnspan=3)
+
+        # if all buttons are disabled
+        elif button1["state"] == DISABLED and button2["state"] == DISABLED and button3["state"] == DISABLED and button4["state"] == DISABLED and button5["state"] == DISABLED and button6["state"] == DISABLED and button7["state"] == DISABLED and button8["state"] == DISABLED and button9["state"] == DISABLED:
+            # Disable all buttons
+            for button in buttons:
+                button.config(state=DISABLED)
+            tkinter.Message(window, text="Draw!", font='Times 20 bold').grid(row=4, column=1, columnspan=3)
+
+    if __name__ == "__main__":
+        window.mainloop()
+
+    
 b1 = Button (root, text = "Solo mode", font = ("Times New Roman", 30), command=buttonFunction1, width = 25, height =10, bg = "red")
 b1.pack (side=LEFT)
 
