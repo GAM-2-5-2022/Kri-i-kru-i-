@@ -1,6 +1,7 @@
 from tkinter import*
 from pygame import mixer
 import pygame
+import tkinter
 
 pygame.init()
 mixer.init()
@@ -14,7 +15,6 @@ root = Tk()
 root.geometry("1150x500")
 
 def buttonFunction1():
-    import tkinter
 
     # create the window
     window = tkinter.Tk()
@@ -213,7 +213,6 @@ def buttonFunction1():
         window.mainloop()
 
 def buttonFunction2():
-    import tkinter
 
     # Create the window
     window = Tk()
